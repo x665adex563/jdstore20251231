@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     end
   end
   resources :cart_items
-  resources :orders
+  resources :orders do
+    member do
+      post :pay_with_creditcard
+      post :pay_with_ewallet
+    end
+  end
   namespace :account do
     resources :orders
   end
