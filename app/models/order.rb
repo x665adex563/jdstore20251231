@@ -19,4 +19,15 @@ class Order < ApplicationRecord
   def pay!
     self.update_columns(is_paid: true)
   end
+
+  include AASM
+
+  aasm do
+    state :order_placed, initial: true
+    state :paid
+    state :shipping
+    state :shipped
+    state :order_cancelled
+    state :good_returned
+  end
 end
